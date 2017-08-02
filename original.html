@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Psychic Game</title>
+</head>
+
+
+
+<body>
+
+	<h1>The Psychic Game</h1>
+    <h3>Guess what letter I'm thinking of:</h3>
+    <p id="wins"></p>Wins: 
+    <p id="losses"></p>Losses: 
+    <p>Guesses Remaining: <span id="guessRemaining"></span></p>
+    <p>Your Guesses So Far: <span id="guessesSoFar"></span></p>
+
+<script>
+
+// Letter Choices for the computer to pick
+	var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+// Record, Score, Remaining Guesses & Letters Guessed
+	var wins = 0;
+    var losses = 0;
+    var guessesRemaining = 9;
+    var lettersGuessed = [];
+
+// This is where the Computer will randomly select a letter from the alphabet
+    var computerSelection = alphabet[Math.floor(Math.random() * alphabet.length)];
+    console.log(computerSelection);
+
+    var updateGuessesRemaining = function() {
+        document.querySelector('guessesRemaining').innerHTML = "GuessesSoFar: " + guessesRemaining;
+    };    
+
+    var updateLetterToGuess = function() {
+        this.letterToGuess = this.alphabet[Math.floor(Math.random() * this.alphabet.length)];
+    };
+
+    var reset = function() {
+        totalGuesses = 9;
+        guessesRemaining = 9;
+        lettersGuessed = [];
+
+        updateGuessesRemaining();
+        updateLetterToGuess();
+        guessesSoFar();
+    };
+
+// By pressing any key, the player records their first guess.
+        document.onkeyup = function(event) {
+        if (guessesRemaining < 1){
+            guessesRemaining = 9;
+            lettersGuessed = [];
+            guessesLeft = "";
+            return 0;};
+    
+    var userGuess = (event.key);
+        if (userGuess.length === 1 && /[A-Z]/i.test(userGuess)) {
+            document.querySelector('#guessesSoFar').innerHTML += userGuess + ', ';
+            guessesRemaining--;
+            document.querySelector('#guessRemaining').innerHTML = guessesRemaining;
+
+            }
+
+        if (computerSelection === userGuess) {
+            wins++;
+            reset();
+            alert("You are a psychic!")
+        }
+
+        };
+
+
+
+</script>
+
+
+
+</body>
+</html>
