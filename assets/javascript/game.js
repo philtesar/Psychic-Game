@@ -2,8 +2,8 @@
     var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 // Record, Score, Remaining Guesses & Letters Guessed
-    var wins = 1;
-    var losses = 1;
+    var wins = 0;
+    var losses = 0;
     var guessesRemaining = 8;
     var lettersGuessed = [];
 
