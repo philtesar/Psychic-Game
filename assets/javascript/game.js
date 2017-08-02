@@ -7,10 +7,19 @@
     var guessesRemaining = 8;
     var lettersGuessed = [];
 
+
     var reset = function () {
         computerSelection = alphabet[Math.floor(Math.random() * alphabet.length)];
-        guessesRemaining = 9;
-        lettersGuessed = null;
+        console.log(computerSelection);
+        guessesRemaining = 8;
+        lettersGuessed = [];
+    };
+
+    var display = function() {
+        document.querySelector('#lettersGuessed').innerHTML = lettersGuessed.join(",");
+        document.querySelector('#wins').innerHTML = wins;
+        document.querySelector('#losses').innerHTML = losses;
+        document.querySelector('#guessesRemaining').innerHTML = guessesRemaining;
     };
 
 
@@ -20,28 +29,24 @@
 
 
     document.onkeyup = function(event) {
-        if (guessesRemaining < 0){
-            lettersGuessed = "";
-            reset()};
     
-    var userGuess = (event.key);
-        if (userGuess.length === 1 && /[A-Z]/i.test(userGuess)) {
-            document.querySelector('#lettersGuessed').innerHTML += userGuess + ', ';
+    var userGuess = event.key;
+        if (event.key === computerSelection) {
+            wins++;
+            reset();
+
+        }
+
+        else {
             guessesRemaining--;
-            document.querySelector('#guessesRemaining').innerHTML = guessesRemaining;
+            lettersGuessed.push(userGuess);
+        }
+
+        if (guessesRemaining == 0) {
+            losses++;
+            reset();
 
         }
 
-        if (userGuess === computerSelection) {
-            alert ("You Win!  Congratulations!");
-            document.querySelector('#wins').innerHTML = wins++;
-
-        }
-
-        else if (guessesRemaining == 0) {
-                reset();
-                alert ("You lose!");
-                document.querySelector('#losses').innerHTML = losses++;
-
-        }
+        display();
     };
