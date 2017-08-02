@@ -12,58 +12,10 @@
     <h3>Guess what letter I'm thinking of:</h3>
     <p>Wins: <span id="wins"></span></p>
     <p>Losses: <span id="losses"></span></p>
-    <p>Guesses Remaining: <span id="guessRemaining"></span></p>
-    <p>Your Guesses So Far: <span id="guessesSoFar"></span></p>
+    <p>Guesses Remaining: <span id="guessesRemaining"></span></p>
+    <p>Your Guesses So Far: <span id="lettersGuessed"></span></p>
 
-<script>
-
-// Letter Choices for the computer to pick
-    var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-// Record, Score, Remaining Guesses & Letters Guessed
-    var wins = 0;
-    var losses = 0;
-    var guessesRemaining = 9;
-    var lettersGuessed = [];
-
-    var reset = function () {
-        computerSelection = alphabet[Math.floor(Math.random() * alphabet.length)];
-        guessesRemaining = 9;
-        lettersGuessed = 0;
-    };
-
-
-// This is where the Computer will randomly select a letter from the alphabet
-    var computerSelection = alphabet[Math.floor(Math.random() * alphabet.length)];
-    console.log(computerSelection);
-
-
-    document.onkeyup = function(event) {
-        if (guessesRemaining < 1){
-            guessesRemaining = 9;
-            lettersGuessed = [];
-            reset();
-            return 0;};
-    
-    var userGuess = (event.key);
-        if (userGuess.length === 1 && /[A-Z]/i.test(userGuess)) {
-            document.querySelector('#guessesSoFar').innerHTML += userGuess + ', ';
-            guessesRemaining--;
-            document.querySelector('#guessRemaining').innerHTML = guessesRemaining;
-
-        }
-
-        if (userGuess === computerSelection) {
-            alert ("You Win!  Congratulations!");
-            document.querySelector('#wins').innerHTML = wins++;
-            return 0;};
-
-
-    };
-
-</script>
-
-
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 
 </body>
 </html>
